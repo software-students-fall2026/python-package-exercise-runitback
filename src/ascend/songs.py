@@ -8,6 +8,9 @@ def pick_song(category):
         "BPCORE": ("Love Potions", "BJ Lips")
     }
 
+    if not isinstance(category, str):
+        return None
+
     if category not in songs:
         return None
 
