@@ -82,3 +82,40 @@ class Tests:
         for level, rank in ranks:
             card = stats.make_stat_card("studying", level)
             assert "Rank: " + rank in card
+
+    def test_invalid_activity(self):
+        invalid_activities = ["", "   ", 123, None]
+
+        for activity in invalid_activities:
+            try:
+                stats.make_stat_card(activity, 5)
+                assert False, "Expected an error for invalid activity"
+            except (TypeError, ValueError):
+                pass
+
+    def test_invalid_level(self):
+        invalid_levels = [0, 11, -1, "five", 3.5, None, True]
+
+        for level in invalid_levels:
+            try:
+                stats.make_stat_card("studying", level)
+                assert False, "Expected an error for invalid level"
+            except (TypeError, ValueError):
+                pass
+
+    def test_boundary_levels(self):
+        card_one = stats.make_stat_card("studying", 1)
+        card_ten = stats.make_stat_card("studying", 10)
+
+        assert "Level: 1/10" in card_one
+        assert "Rank: NPC Energy" in card_one
+        assert "Level: 10/10" in card_ten
+        assert "Rank: Final Boss Aura" in card_ten
+
+    def test_activity_whitespace_and_case(self):
+        card = stats.make_stat_card("  STUDYING  ", 7)
+
+        assert "Activity: STUDYING" in card
+        assert "Focus:" in card
+        assert "Studymaxxing:" in card
+        assert "Exam Aura:" in card
