@@ -26,13 +26,12 @@ Ascend is developed by **Team Run-It-Back**.
 
 | Team member | Responsibility | GitHub |
 |---|---|---|
-| Brian | Title generation, package setup, publishing | [Add Brian's GitHub profile](#) |
-| Mihir | Song selection, example program | [Add Mihir's GitHub profile](#) |
-| Yash | Sentence translation | [Add Yash's GitHub profile](#) |
+| Brian | Title generation, package setup, publishing | [Brian](https://github.com/BrianDai22) |
+| Mihir | Song selection, example program | [Mihir](https://github.com/mihirgan06) |
+| Yash | Sentence translation | [Yash](https://github.com/yash-pandya9798) |
 | Theo | Stat card generation | [Theo](https://github.com/theoegoldstine) |
-| Linh | Model selection, README | [Add Linh's GitHub profile](#) |
+| Linh | Model selection, README | [Linh](https://github.com/katiettran) |
 
-> **TODO:** Replace the four missing GitHub profile links with verified usernames.
 
 ## PyPI package
 
@@ -62,33 +61,65 @@ from ascend import titles, songs, translator, models, stats
 
 Ascend provides five functions for generating meme-inspired content.
 
+
 ### Title generation
 
-**Function:** `make_title()`
-
+**Function:** `make_title(activity, outcome)`  
 **Module:** `ascend.titles`
 
-Generates dramatic titles based on ordinary topics.
+The `make_title()` function generates a random looksmaxxing-style edit title based on an activity and its outcome.
+
+**Parameters:**
+- `activity`: A non-empty string, such as `"gym"` or `"study"`.
+- `outcome`: Must be `"win"`, `"loss"`, or `"grind"`.
+
+Returns a randomly generated title as a string, or `None` for invalid inputs.
+
+**Example:**
 
 ```python
 from ascend import titles
 
-# TODO: Add Brian's verified function call and example output.
+print(titles.make_title("gym", "win"))
+# Example output: "pov gymmaxxing brutal mog"
+
+print(titles.make_title("study", "grind"))
+# Example output: "studymaxxing update ascension pending"
+
+print(titles.make_title("gym", "invalid"))
+# Output: None
 ```
+
+Results may vary because the function randomly selects phrases.
+
 
 ### Song selection
 
-**Function:** `pick_song()`
-
+**Function:** `pick_song(category)`  
 **Module:** `ascend.songs`
 
-Suggests a song and artist from a catalog to accompany an edit.
+The `pick_song()` function recommends a song based on the category you choose.
+
+**Parameters:**
+- `category`: Must be `"gym"`, `"study"`, `"edit"`, `"chill"`, or `"BPCORE"`. Categories are case-sensitive.
+
+Returns a tuple containing the song title and artist, or `None` for invalid inputs.
+
+**Example:**
 
 ```python
 from ascend import songs
 
-# TODO: Add Mihir's verified function call and example output.
+print(songs.pick_song("gym"))
+# Output: ('METAMORPHOSIS', 'INTERWORLD')
+
+print(songs.pick_song("study"))
+# Output: ('Memory Reboot', 'VØJ, Narvent')
+
+print(songs.pick_song("invalid"))
+# Output: None
 ```
+
 
 ### Sentence translation
 
@@ -104,18 +135,41 @@ from ascend import translator
 # TODO: Add Yash's verified function call and example output.
 ```
 
+
 ### Model selection
 
-**Function:** `pick_model()`
-
+**Function:** `pick_model(category)`  
 **Module:** `ascend.models`
 
-Suggests a fashion model from a catalog.
+The `pick_model()` function recommends a fashion model based on the selected category.
+
+**Parameters:**
+- `category`: A string representing one of five supported categories: `"runway"`, `"editorial"`, `"classic"`, `"angel"`, or `"high-fashion"`. Categories are case-sensitive.
+
+Returns the name of the selected model as a string.
+
+**Example:**
 
 ```python
 from ascend import models
 
-# TODO: Add Linh's verified function call and example output.
+print(models.pick_model("runway"))
+# Output: Bella Hadid
+
+print(models.pick_model("editorial"))
+# Output: Vittoria Ceretti
+
+print(models.pick_model("high-fashion"))
+# Output: Anok Yai
+```
+
+**Invalid inputs:**
+
+The function raises a `ValueError` if the category is not a string or is not one of the supported categories.
+
+```python
+models.pick_model("invalid")  # Raises ValueError
+models.pick_model(123)        # Raises ValueError
 ```
 
 ### Stat cards
