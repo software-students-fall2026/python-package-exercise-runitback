@@ -1,6 +1,6 @@
 
 import json
-
+import sys
 from ascend import songs, titles, models, translator, stats
 
 
@@ -64,8 +64,8 @@ def main():
         )
 
     except (ValueError, TypeError) as error:
-        print("\nCould not generate edit:", error)
-        return
+        print("\nCould not generate edit:", error, file=sys.stderr)
+        return 1
 
     print("\n================================")
     print("        YOUR EDIT BLUEPRINT")
@@ -93,7 +93,8 @@ def main():
 
     print(f"\nBlueprint saved to {filename}")
     print("Ready for video generation!")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
