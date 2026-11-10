@@ -40,7 +40,7 @@ Ascend is developed by **Team Run-It-Back**.
 
 **Python import name:** `ascend`
 
-Version `0.1.0` of [ascend-runitback](https://pypi.org/project/ascend-runitback/) is published on PyPI.
+[ascend-runitback](https://pypi.org/project/ascend-runitback/) is available on PyPI.
 
 ## Installation
 
