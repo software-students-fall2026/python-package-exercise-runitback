@@ -1,7 +1,7 @@
 
 import random
 
-_HYPERGAMY_MESSAGES = ("there's no hope.", "its so jover.", "hypergamy comes for us all.", "foids will be foids.")
+_HYPERGAMY_MESSAGES = ("there's no hope.", "its so jover.", "hypergamy comes for us all.")
 
 def make_stat_card(activity, level):
     """
