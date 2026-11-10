@@ -330,11 +330,50 @@ stats.make_stat_card("gaming", 11)   # ValueError
 stats.make_stat_card("gym", "high")  # TypeError
 ```
 
+## Command-line usage
+
+Ascend can also translate text directly from the terminal using `python -m ascend`.
+
+To translate a sentence, run:
+
+```bash
+python -m ascend "Good news!"
+```
+
+Output:
+
+```text
+Lifefuel!
+```
+
+You can also pass text through standard input:
+
+```bash
+echo "I study." | python -m ascend
+```
+
+Output:
+
+```text
+I studymaxx.
+```
+
+To view the available command-line options, run:
+
+```bash
+python -m ascend --help
+```
+
+The command accepts text as arguments or reads from standard input when no arguments are provided. It prints the translated text to the terminal.
+
+If no valid, non-empty text is provided, the command displays an error.
+
+
 ## Example program
 
-The example program demonstrates how to import and use all five Ascend functions together.
+The example program demonstrates how to import and use all six Ascend functions together.
 
-> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all five functions using their final interfaces.
+> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all six functions using their final interfaces.
 
 ## Development setup
 
