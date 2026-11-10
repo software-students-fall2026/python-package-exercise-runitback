@@ -2,9 +2,7 @@
 
 ## Build and test status
 
-[![Build and Test](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/WORKFLOW_FILE.yml/badge.svg)](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions)
-
-> **TODO:** Replace `WORKFLOW_FILE.yml` with the actual GitHub Actions workflow filename.
+[![Build and Test](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/package-tests.yml/badge.svg)](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/package-tests.yml)
 
 ## Description
 
