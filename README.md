@@ -54,7 +54,7 @@ python -m pip install ascend-runitback
 You can then import individual Ascend modules into your Python programs:
 
 ```python
-from ascend import titles, songs, translator, models, stats
+from ascend import titles, songs, translator, models, stats, hypergamy_meme
 ```
 
 ## Usage
