@@ -1,5 +1,5 @@
 
-from ascend import songs, titles, models
+from ascend import songs, titles, models, translator, stats, hypergamy_meme
 
 
 def main():
@@ -17,6 +17,22 @@ def main():
 
     print("\nMODEL:")
     print(models.pick_model("runway"))
+
+    print("\nSTAT CARD:")
+    print(stats.make_stat_card("gym", 7))
+
+    print("\nASCII GRAPH:")
+    print(hypergamy_meme.make_hypergamy_meme_ascii())
+
+    caption = "I worked out, then studied."
+    print("\nCAPTION TRANSLATION:")
+    print("Original:", caption)
+    print("Translated:", translator.translate_sentence(caption))
+
+    captions = ["I worked out.", "I won the game."]
+    print("\nBATCH TRANSLATION:")
+    print("Original:", captions)
+    print("Translated:", translator.translate_many(captions))
 
     print("\n--- SONG CATALOG ---")
     for category in ["gym", "study", "edit", "chill", "BPCORE"]:

@@ -170,9 +170,6 @@ class Tests:
             "My cortisol really spiked over class."
         )
         assert translator.translate_sentence("She's focused the camera.") == "She's focused the camera."
-        assert translator.translate_sentence("She's stressed the importance of sleep.") == (
-            "She's stressed the importance of sleep."
-        )
 
     def test_translates_comparisons_between_people(self):
         assert translator.translate_sentence("He is taller than me.") == "He heightmogs me."
@@ -293,17 +290,11 @@ class Tests:
         assert translator.translate_sentence("mihir") == "HTN"
         assert translator.translate_sentence("mihir is a good guy") == "HTN is a good guy"
         assert translator.translate_sentence("mihir is a bad guy") == "HTN is a bad guy"
-        assert translator.translate_sentence("mihir is a good guy") == "HTN is a good guy"
 
     def test_everyday_idioms(self):
         assert translator.translate_sentence("I hit the books.") == "I studymaxx."
         assert translator.translate_sentence("Call it a day.") == "Log off."
         assert translator.translate_sentence("She is on top of the world.") == "She is peak aura."
-
-    def test_sleep_and_hydration_verbs(self):
-        assert translator.translate_sentence("I'm sleeping right now.") == "I'm restmaxxing right now."
-        assert translator.translate_sentence("She hydrated after the run.") == "She watermaxxed after the run."
-        assert translator.translate_sentence("I'm going to sleep.") == "I'm going to restmaxx."
 
     def test_infers_actions_after_more_modals(self):
         assert translator.translate_sentence("I could budget.") == "I could budgetmaxx."

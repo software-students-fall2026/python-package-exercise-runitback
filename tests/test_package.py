@@ -1,4 +1,4 @@
-from ascend import titles, songs, translator, models, stats
+from ascend import titles, songs, translator, models, stats, hypergamy_meme
 
 
 class Tests:

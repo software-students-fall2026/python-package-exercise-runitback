@@ -159,8 +159,8 @@ _BE_CONTRACTIONS = {
 }
 _BE_CUES = _BE_VERBS + tuple(cue for cue in _BE_CONTRACTIONS if cue not in _BE_VERBS)
 
-_SLOT_FOLLOWERS = ("again", "and", "before", "but", "because", "since", "to", "today", "yesterday")
-_COMPARISON_FOLLOWERS = _SLOT_FOLLOWERS + ("at", "in", "on", "now", "too", "though")
+_PHRASE_FOLLOWERS = ("again", "and", "before", "but", "because", "since", "to", "today", "yesterday")
+_COMPARISON_FOLLOWERS = _PHRASE_FOLLOWERS + ("at", "in", "on", "now", "too", "though")
 _ADJECTIVE_FOLLOWERS = _COMPARISON_FOLLOWERS + ("about", "after", "enough", "for", "with")
 
 _ACTION_MODIFIERS = (
@@ -274,7 +274,7 @@ def _match_phrase(word_parts, lookup_words, start_index, end_index, previous_com
 
     original_words = [parts[1] for parts in word_parts[start_index:end_index + 1]]
     if len(words) >= 3:
-        replacement = _slot_swap(words, original_words, next_word)
+        replacement = _special_phrase_swap(words, original_words, next_word)
         if replacement is not None:
             return replacement, None
 
@@ -360,8 +360,12 @@ def _build_verb_swaps(verb_bases):
     for source, slang in verb_bases.items():
         source_verb, source_space, source_tail = source.partition(" ")
         slang_verb, slang_space, slang_tail = slang.partition(" ")
-        for source_form, slang_form in zip(_verb_forms(source_verb), _verb_forms(slang_verb)):
-            swaps[source_form + source_space + source_tail] = slang_form + slang_space + slang_tail
+        source_forms = _verb_forms(source_verb)
+        slang_forms = _verb_forms(slang_verb)
+        for source_form, slang_form in zip(source_forms, slang_forms):
+            source_phrase = source_form + source_space + source_tail
+            slang_phrase = slang_form + slang_space + slang_tail
+            swaps[source_phrase] = slang_phrase
     return swaps
 
 
@@ -473,11 +477,16 @@ def _can_maxx_action(word_parts, lookup_words, word_index):
     previous_word = lookup_words[cue_index - 1]
     if cue == "to":
         if previous_word == "going":
-            return (
-                cue_index >= 2 and _phrase_continues(word_parts, cue_index - 2)
-                and lookup_words[cue_index - 2].replace("'", "") in _BE_CUES
-                and original_word.islower() and lookup_word not in _DESTINATIONS
-            )
+            if cue_index < 2:
+                return False
+            if not _phrase_continues(word_parts, cue_index - 2):
+                return False
+            word_before_going = lookup_words[cue_index - 2].replace("'", "")
+            if word_before_going not in _BE_CUES:
+                return False
+            if not original_word.islower():
+                return False
+            return lookup_word not in _DESTINATIONS
         return previous_word in _ACTION_CUES
     if cue in ("will", "should", "can", "could", "might", "must"):
         return previous_word in _SUBJECT_PRONOUNS or previous_word in _PERSON_NOUNS
@@ -486,7 +495,7 @@ def _can_maxx_action(word_parts, lookup_words, word_index):
     return False
 
 
-def _slot_swap(words, original_words, next_word):
+def _special_phrase_swap(words, original_words, next_word):
     first_word = original_words[0]
     last_word = original_words[-1]
     if words[-1] == "over" and words[-2] in _INTENSIFIERS:
@@ -506,8 +515,8 @@ def _slot_swap(words, original_words, next_word):
 
     last_lookup = words[-1]
     if words[0] in _LIE_FORMS and words[1] == "about" and words[2] in _POSSESSIVES:
-        slot_ends_here = not next_word or next_word in _SLOT_FOLLOWERS
-        if slot_ends_here and last_lookup not in _NOUN_CUES:
+        trait_ends_here = not next_word or next_word in _PHRASE_FOLLOWERS
+        if trait_ends_here and last_lookup not in _NOUN_CUES:
             fraud_form = _FRAUD_FORMS[_LIE_FORMS.index(words[0])]
             return last_word + fraud_form
     return None
@@ -555,7 +564,7 @@ def _stress_swap(subject, predicate, next_word):
     ):
         return None
     has_topic = state[-1] == "about"
-    if not has_topic and next_word and next_word not in _SLOT_FOLLOWERS:
+    if not has_topic and next_word and next_word not in _PHRASE_FOLLOWERS:
         return None
 
     possessive = _POSSESSIVE_SUBJECTS.get(subject.lower())

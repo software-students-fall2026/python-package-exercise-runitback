@@ -78,7 +78,6 @@ def main():
     print("CAPTION:", blueprint["caption"])
     print("\n" + blueprint["stat_card"])
 
-    # Create a new filename instead of overwriting an existing blueprint.
     filename = "edit_blueprint.json"
     number = 1
 

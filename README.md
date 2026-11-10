@@ -10,13 +10,14 @@ Ascend is a lighthearted Python package inspired by looksmaxxing slang, internet
 
 Created by Team Run-It-Back, Ascend transforms ordinary topics and everyday activities into exaggerated, meme-inspired content. Whether you're studying for an exam, going to the gym, or gaming with friends, Ascend helps you turn an ordinary activity into something worthy of a dramatic internet edit.
 
-The package provides five main features:
+The package provides six main features.
 
 - **Title generation:** Create dramatic, meme-inspired titles from everyday topics.
 - **Song selection:** Get song and artist suggestions for your edits.
 - **Sentence translation:** Rewrite ordinary sentences using looksmaxxing and internet slang.
 - **Model selection:** Receive fashion model suggestions from a catalog.
 - **Stat cards:** Generate fictional ratings, funny ranks, and activity-specific statistics.
+- **ASCII graph.** The graph shows a text drawing with a random caption.
 
 Ascend is intended for entertainment and creative inspiration. All stat card scores are fictional and do not represent real assessments of someone's appearance, abilities, or worth.
 
@@ -39,7 +40,7 @@ Ascend is developed by **Team Run-It-Back**.
 
 **Python import name:** `ascend`
 
-> **TODO:** Add the actual PyPI package link once Brian has published the release. Verify the installation name before final submission.
+The first release of [ascend-runitback](https://pypi.org/project/ascend-runitback/) is pending publication. The installation command below will work once the release is available.
 
 ## Installation
 
@@ -54,12 +55,12 @@ python -m pip install ascend-runitback
 You can then import individual Ascend modules into your Python programs:
 
 ```python
-from ascend import titles, songs, translator, models, stats
+from ascend import titles, songs, translator, models, stats, hypergamy_meme
 ```
 
 ## Usage
 
-Ascend provides five functions for generating meme-inspired content.
+Ascend provides seven functions for generating meme-inspired content.
 
 
 ### Title generation
@@ -330,6 +331,16 @@ stats.make_stat_card("gaming", 11)   # ValueError
 stats.make_stat_card("gym", "high")  # TypeError
 ```
 
+### ASCII graph
+
+`make_hypergamy_meme_ascii(color=False)` returns a text drawing with a random caption. Pass `color=True` to add color in the terminal.
+
+```python
+from ascend import hypergamy_meme
+
+print(hypergamy_meme.make_hypergamy_meme_ascii())
+```
+
 ## Command-line usage
 
 Ascend can also translate text directly from the terminal using `python -m ascend`.
@@ -371,9 +382,25 @@ If no valid, non-empty text is provided, the command displays an error.
 
 ## Example program
 
-The example program demonstrates how to import and use all six Ascend functions together.
+Run [the example program](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/example.py) from the repository folder after installing the development dependencies. It demonstrates all seven Ascend functions.
 
-> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all six functions using their final interfaces.
+```bash
+pipenv run python example.py
+```
+
+## Interactive edit builder
+
+Run [Mihir's app](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/edit_app.py) from the repository folder after installing the development dependencies.
+
+```bash
+pipenv run python edit_app.py
+```
+
+The app asks for an activity, outcome, song category, model category, caption, and level. It prints a title, song, model, translated caption, and stat card.
+
+The app saves the results in `edit_blueprint.json` in the folder where you run it. If the file exists, the app uses the next available numbered name, such as `edit_blueprint_1.json`.
+
+Invalid input produces an error message and an exit status of 1.
 
 ## Development setup
 
@@ -415,9 +442,7 @@ A teammate must review the code and run the tests before changes are merged.
 
 ## Configuration
 
-Ascend's stat card generator does not require API keys, environment variables, or external databases.
-
-> **TODO:** Confirm whether the other four modules require additional configuration, external data, or environment variables. Document any requirements here before submission.
+Ascend runs with the rules and catalogs included in the package. Setup only requires installing the package and its development dependencies. Mihir's app saves its JSON output in the folder where you run it.
 
 ## Running tests
 
@@ -445,9 +470,7 @@ The stat card tests cover:
 - Invalid activity and level inputs.
 - Boundary levels and activity formatting.
 
-The stat card implementation passed nine focused tests, and the local full test suite passed ten tests on Python 3.15.2.
-
-GitHub Actions is configured to build and test pull requests on two recent Python versions. The final workflow results should be checked before merging.
+GitHub Actions runs the tests and builds the package on Python 3.13 and 3.14. Check the workflow results before merging a pull request.
 
 ## Building the package
 
@@ -493,4 +516,4 @@ https://github.com/software-students-fall2026/python-package-exercise-runitback
 
 ## License
 
-> **TODO:** Confirm the repository's license and link it here, if applicable.
+Ascend uses the [GNU General Public License v3.0 or later](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/LICENSE).
