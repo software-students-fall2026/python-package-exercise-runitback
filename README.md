@@ -382,7 +382,25 @@ If no valid, non-empty text is provided, the command displays an error.
 
 ## Example program
 
-The [example program](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/example.py) demonstrates all seven Ascend functions.
+Run [the example program](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/example.py) from the repository folder after installing the development dependencies. It demonstrates all seven Ascend functions.
+
+```bash
+pipenv run python example.py
+```
+
+## Interactive edit builder
+
+Run [Mihir's app](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/edit_app.py) from the repository folder after installing the development dependencies.
+
+```bash
+pipenv run python edit_app.py
+```
+
+The app asks for an activity, outcome, song category, model category, caption, and level. It prints a title, song, model, translated caption, and stat card.
+
+The app saves the results in `edit_blueprint.json` in the folder where you run it. If the file exists, the app uses the next available numbered name, such as `edit_blueprint_1.json`.
+
+Invalid input produces an error message and an exit status of 1.
 
 ## Development setup
 
