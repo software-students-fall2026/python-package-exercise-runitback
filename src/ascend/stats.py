@@ -1,6 +1,7 @@
 
 import random
 
+_HYPERGAMY_MESSAGES = ("there's no hope.", "its so jover.", "hypergamy comes for us all.", "foids will be foids.")
 
 def make_stat_card(activity, level):
     """
@@ -140,4 +141,5 @@ def make_hypergamy_meme_ascii(color=False):
 
         output.append("".join(rendered))
 
+    output.append(random.choice(_HYPERGAMY_MESSAGES))
     return "\n".join(output)
