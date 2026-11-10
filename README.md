@@ -120,19 +120,58 @@ print(songs.pick_song("invalid"))
 # Output: None
 ```
 
-
 ### Sentence translation
 
-**Function:** `translate_sentence()`
-
+**Functions:** `translate_sentence(text)` and `translate_many(texts)`  
 **Module:** `ascend.translator`
 
-Transforms ordinary sentences into meme-inspired slang.
+The translator converts ordinary English sentences into looksmaxxing and blackpill-style slang.
+
+#### translate_sentence()
+
+The `translate_sentence()` function translates a single string by replacing recognized words and phrases with slang equivalents.
+
+**Parameters:**
+- `text`: A non-empty string containing the sentence to translate.
+
+Returns the translated sentence as a string, or `None` for invalid inputs. Text without recognized phrases is returned unchanged.
+
+**Example:**
 
 ```python
 from ascend import translator
 
-# TODO: Add Yash's verified function call and example output.
+print(translator.translate_sentence("Good news!"))
+# Output: Lifefuel!
+
+print(translator.translate_sentence("I study."))
+# Output: I studymaxx.
+
+print(translator.translate_sentence(""))
+# Output: None
+```
+
+#### translate_many()
+
+The `translate_many()` function translates multiple sentences at once.
+
+**Parameters:**
+- `texts`: An iterable of strings, such as a list of sentences.
+
+Returns a list of translated results. Invalid individual sentences produce `None` in the list. Passing a string instead of an iterable of sentences, or a non-iterable value, returns `None`.
+
+**Example:**
+
+```python
+from ascend import translator
+
+sentences = ["Good news!", "I study.", "Hello!"]
+
+print(translator.translate_many(sentences))
+# Output: ['Lifefuel!', 'I studymaxx.', 'Hello!']
+
+print(translator.translate_many("Hello!"))
+# Output: None
 ```
 
 
