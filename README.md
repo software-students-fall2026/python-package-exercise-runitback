@@ -2,9 +2,7 @@
 
 ## Build and test status
 
-[![Build and Test](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/WORKFLOW_FILE.yml/badge.svg)](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions)
-
-> **TODO:** Replace `WORKFLOW_FILE.yml` with the actual GitHub Actions workflow filename.
+[![Build and Test](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/package-tests.yml/badge.svg)](https://github.com/software-students-fall2026/python-package-exercise-runitback/actions/workflows/package-tests.yml)
 
 ## Description
 
@@ -28,13 +26,12 @@ Ascend is developed by **Team Run-It-Back**.
 
 | Team member | Responsibility | GitHub |
 |---|---|---|
-| Brian | Title generation, package setup, publishing | [Add Brian's GitHub profile](#) |
-| Mihir | Song selection, example program | [Add Mihir's GitHub profile](#) |
-| Yash | Sentence translation | [Add Yash's GitHub profile](#) |
+| Brian | Title generation, package setup, publishing | [Brian](https://github.com/BrianDai22) |
+| Mihir | Song selection, example program | [Mihir](https://github.com/mihirgan06) |
+| Yash | Sentence translation | [Yash](https://github.com/yash-pandya9798) |
 | Theo | Stat card generation | [Theo](https://github.com/theoegoldstine) |
-| Linh | Model selection, README | [Add Linh's GitHub profile](#) |
+| Linh | Model selection, README | [Linh](https://github.com/katiettran) |
 
-> **TODO:** Replace the four missing GitHub profile links with verified usernames.
 
 ## PyPI package
 
@@ -64,60 +61,154 @@ from ascend import titles, songs, translator, models, stats
 
 Ascend provides five functions for generating meme-inspired content.
 
+
 ### Title generation
 
-**Function:** `make_title()`
-
+**Function:** `make_title(activity, outcome)`  
 **Module:** `ascend.titles`
 
-Generates dramatic titles based on ordinary topics.
+The `make_title()` function generates a random looksmaxxing-style edit title based on an activity and its outcome.
+
+**Parameters:**
+- `activity`: A non-empty string, such as `"gym"` or `"study"`.
+- `outcome`: Must be `"win"`, `"loss"`, or `"grind"`.
+
+Returns a randomly generated title as a string, or `None` for invalid inputs.
+
+**Example:**
 
 ```python
 from ascend import titles
 
-# TODO: Add Brian's verified function call and example output.
+print(titles.make_title("gym", "win"))
+# Example output: "pov gymmaxxing brutal mog"
+
+print(titles.make_title("study", "grind"))
+# Example output: "studymaxxing update ascension pending"
+
+print(titles.make_title("gym", "invalid"))
+# Output: None
 ```
+
+Results may vary because the function randomly selects phrases.
+
 
 ### Song selection
 
-**Function:** `pick_song()`
-
+**Function:** `pick_song(category)`  
 **Module:** `ascend.songs`
 
-Suggests a song and artist from a catalog to accompany an edit.
+The `pick_song()` function recommends a song based on the category you choose.
+
+**Parameters:**
+- `category`: Must be `"gym"`, `"study"`, `"edit"`, `"chill"`, or `"BPCORE"`. Categories are case-sensitive.
+
+Returns a tuple containing the song title and artist, or `None` for invalid inputs.
+
+**Example:**
 
 ```python
 from ascend import songs
 
-# TODO: Add Mihir's verified function call and example output.
+print(songs.pick_song("gym"))
+# Output: ('METAMORPHOSIS', 'INTERWORLD')
+
+print(songs.pick_song("study"))
+# Output: ('Memory Reboot', 'VØJ, Narvent')
+
+print(songs.pick_song("invalid"))
+# Output: None
 ```
 
 ### Sentence translation
 
-**Function:** `translate_sentence()`
-
+**Functions:** `translate_sentence(text)` and `translate_many(texts)`  
 **Module:** `ascend.translator`
 
-Transforms ordinary sentences into meme-inspired slang.
+The translator converts ordinary English sentences into looksmaxxing and blackpill-style slang.
+
+#### translate_sentence()
+
+The `translate_sentence()` function translates a single string by replacing recognized words and phrases with slang equivalents.
+
+**Parameters:**
+- `text`: A non-empty string containing the sentence to translate.
+
+Returns the translated sentence as a string, or `None` for invalid inputs. Text without recognized phrases is returned unchanged.
+
+**Example:**
 
 ```python
 from ascend import translator
 
-# TODO: Add Yash's verified function call and example output.
+print(translator.translate_sentence("Good news!"))
+# Output: Lifefuel!
+
+print(translator.translate_sentence("I study."))
+# Output: I studymaxx.
+
+print(translator.translate_sentence(""))
+# Output: None
 ```
+
+#### translate_many()
+
+The `translate_many()` function translates multiple sentences at once.
+
+**Parameters:**
+- `texts`: An iterable of strings, such as a list of sentences.
+
+Returns a list of translated results. Invalid individual sentences produce `None` in the list. Passing a string instead of an iterable of sentences, or a non-iterable value, returns `None`.
+
+**Example:**
+
+```python
+from ascend import translator
+
+sentences = ["Good news!", "I study.", "Hello!"]
+
+print(translator.translate_many(sentences))
+# Output: ['Lifefuel!', 'I studymaxx.', 'Hello!']
+
+print(translator.translate_many("Hello!"))
+# Output: None
+```
+
 
 ### Model selection
 
-**Function:** `pick_model()`
-
+**Function:** `pick_model(category)`  
 **Module:** `ascend.models`
 
-Suggests a fashion model from a catalog.
+The `pick_model()` function recommends a fashion model based on the selected category.
+
+**Parameters:**
+- `category`: A string representing one of five supported categories: `"runway"`, `"editorial"`, `"classic"`, `"angel"`, or `"high-fashion"`. Categories are case-sensitive.
+
+Returns the name of the selected model as a string.
+
+**Example:**
 
 ```python
 from ascend import models
 
-# TODO: Add Linh's verified function call and example output.
+print(models.pick_model("runway"))
+# Output: Bella Hadid
+
+print(models.pick_model("editorial"))
+# Output: Vittoria Ceretti
+
+print(models.pick_model("high-fashion"))
+# Output: Anok Yai
+```
+
+**Invalid inputs:**
+
+The function raises a `ValueError` if the category is not a string or is not one of the supported categories.
+
+```python
+models.pick_model("invalid")  # Raises ValueError
+models.pick_model(123)        # Raises ValueError
 ```
 
 ### Stat cards
@@ -239,11 +330,50 @@ stats.make_stat_card("gaming", 11)   # ValueError
 stats.make_stat_card("gym", "high")  # TypeError
 ```
 
+## Command-line usage
+
+Ascend can also translate text directly from the terminal using `python -m ascend`.
+
+To translate a sentence, run:
+
+```bash
+python -m ascend "Good news!"
+```
+
+Output:
+
+```text
+Lifefuel!
+```
+
+You can also pass text through standard input:
+
+```bash
+echo "I study." | python -m ascend
+```
+
+Output:
+
+```text
+I studymaxx.
+```
+
+To view the available command-line options, run:
+
+```bash
+python -m ascend --help
+```
+
+The command accepts text as arguments or reads from standard input when no arguments are provided. It prints the translated text to the terminal.
+
+If no valid, non-empty text is provided, the command displays an error.
+
+
 ## Example program
 
-The example program demonstrates how to import and use all five Ascend functions together.
+The example program demonstrates how to import and use all six Ascend functions together.
 
-> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all five functions using their final interfaces.
+> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all six functions using their final interfaces.
 
 ## Development setup
 
