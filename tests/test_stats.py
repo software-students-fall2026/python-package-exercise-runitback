@@ -119,3 +119,20 @@ class Tests:
         assert "Focus:" in card
         assert "Studymaxxing:" in card
         assert "Exam Aura:" in card
+    
+    def test_ascii_graph_has_figures_and_arrows(self):
+        graph = stats.make_hypergamy_meme_ascii()
+
+        assert graph.count("O") == 12
+        assert "/" in graph
+        assert "-" in graph
+        assert ">" in graph
+
+
+    def test_ascii_graph_uses_color_only_when_requested(self):
+        plain_graph = stats.make_hypergamy_meme_ascii()
+        color_graph = stats.make_hypergamy_meme_ascii(color=True)
+
+        assert "\033[" not in plain_graph
+        assert "\033[95m" in color_graph
+        assert "\033[96m" in color_graph
