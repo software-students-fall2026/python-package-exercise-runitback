@@ -13,7 +13,6 @@ def make_hypergamy_meme_ascii(color=False):
     woman_x, man_x = 9, 74
     start_x, target_x, target_y = woman_x + 4, 68, 3
 
-    # Draw complete rising lines from each woman to the top man.
     for woman_y_pos in women_y:
         start_y = woman_y_pos + 1
         previous_y = start_y

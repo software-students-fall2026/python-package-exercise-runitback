@@ -62,7 +62,6 @@ def run_app(inputs, cwd):
 
 
 def test_cli_success_and_preserves_existing_file(tmp_path):
-    # The CLI writes output to the current working directory.
     existing_file = tmp_path / "edit_blueprint.json"
     existing_file.write_text('{"keep": "original"}', encoding="utf-8")
 
