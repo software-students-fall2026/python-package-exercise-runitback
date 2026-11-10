@@ -40,13 +40,13 @@ Ascend is developed by **Team Run-It-Back**.
 
 **Python import name:** `ascend`
 
-The first release of [ascend-runitback](https://pypi.org/project/ascend-runitback/) is pending publication. The installation command below will work once the release is available.
+Version `0.1.0` of [ascend-runitback](https://pypi.org/project/ascend-runitback/) is published on PyPI.
 
 ## Installation
 
-Ascend is designed to be installed using pip.
+Use Python 3.13 or later.
 
-Once the package has been published on PyPI, install it with:
+Install the package with:
 
 ```bash
 python -m pip install ascend-runitback
