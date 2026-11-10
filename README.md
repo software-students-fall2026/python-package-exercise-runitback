@@ -40,7 +40,7 @@ Ascend is developed by **Team Run-It-Back**.
 
 **Python import name:** `ascend`
 
-> **TODO:** Add the actual PyPI package link once Brian has published the release. Verify the installation name before final submission.
+The first release of [ascend-runitback](https://pypi.org/project/ascend-runitback/) is pending publication. The installation command below will work once the release is available.
 
 ## Installation
 
@@ -442,9 +442,7 @@ A teammate must review the code and run the tests before changes are merged.
 
 ## Configuration
 
-Ascend's stat card generator does not require API keys, environment variables, or external databases.
-
-> **TODO:** Confirm whether the other four modules require additional configuration, external data, or environment variables. Document any requirements here before submission.
+Ascend runs with the rules and catalogs included in the package. Setup only requires installing the package and its development dependencies. Mihir's app saves its JSON output in the folder where you run it.
 
 ## Running tests
 
@@ -472,9 +470,7 @@ The stat card tests cover:
 - Invalid activity and level inputs.
 - Boundary levels and activity formatting.
 
-The stat card implementation passed nine focused tests, and the local full test suite passed ten tests on Python 3.15.2.
-
-GitHub Actions is configured to build and test pull requests on two recent Python versions. The final workflow results should be checked before merging.
+GitHub Actions runs the tests and builds the package on Python 3.13 and 3.14. Check the workflow results before merging a pull request.
 
 ## Building the package
 
@@ -520,4 +516,4 @@ https://github.com/software-students-fall2026/python-package-exercise-runitback
 
 ## License
 
-> **TODO:** Confirm the repository's license and link it here, if applicable.
+Ascend uses the [GNU General Public License v3.0 or later](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/LICENSE).
