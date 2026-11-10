@@ -1,6 +1,4 @@
-
 from ascend import stats
-
 
 class Tests:
     def test_studying(self):
@@ -128,7 +126,6 @@ class Tests:
         assert "-" in graph
         assert ">" in graph
 
-
     def test_ascii_graph_uses_color_only_when_requested(self):
         plain_graph = stats.make_hypergamy_meme_ascii()
         color_graph = stats.make_hypergamy_meme_ascii(color=True)
@@ -136,3 +133,14 @@ class Tests:
         assert "\033[" not in plain_graph
         assert "\033[95m" in color_graph
         assert "\033[96m" in color_graph
+    
+    def test_ascii_graph_appends_randomized_message(self, monkeypatch):
+        messages = ("first test message", "second test message")
+
+        monkeypatch.setattr(stats, "_HYPERGAMY_MESSAGES", messages)
+        monkeypatch.setattr(stats.random, "choice", lambda options: options[-1])
+
+        graph = stats.make_hypergamy_meme_ascii()
+
+        assert graph.endswith("second test message")
+        assert graph.rfind("second test message") > graph.rfind(">")
