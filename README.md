@@ -10,13 +10,14 @@ Ascend is a lighthearted Python package inspired by looksmaxxing slang, internet
 
 Created by Team Run-It-Back, Ascend transforms ordinary topics and everyday activities into exaggerated, meme-inspired content. Whether you're studying for an exam, going to the gym, or gaming with friends, Ascend helps you turn an ordinary activity into something worthy of a dramatic internet edit.
 
-The package provides five main features:
+The package provides six main features.
 
 - **Title generation:** Create dramatic, meme-inspired titles from everyday topics.
 - **Song selection:** Get song and artist suggestions for your edits.
 - **Sentence translation:** Rewrite ordinary sentences using looksmaxxing and internet slang.
 - **Model selection:** Receive fashion model suggestions from a catalog.
 - **Stat cards:** Generate fictional ratings, funny ranks, and activity-specific statistics.
+- **ASCII graph.** The graph shows a text drawing with a random caption.
 
 Ascend is intended for entertainment and creative inspiration. All stat card scores are fictional and do not represent real assessments of someone's appearance, abilities, or worth.
 
@@ -59,7 +60,7 @@ from ascend import titles, songs, translator, models, stats, hypergamy_meme
 
 ## Usage
 
-Ascend provides five functions for generating meme-inspired content.
+Ascend provides seven functions for generating meme-inspired content.
 
 
 ### Title generation
@@ -330,6 +331,16 @@ stats.make_stat_card("gaming", 11)   # ValueError
 stats.make_stat_card("gym", "high")  # TypeError
 ```
 
+### ASCII graph
+
+`make_hypergamy_meme_ascii(color=False)` returns a text drawing with a random caption. Pass `color=True` to add color in the terminal.
+
+```python
+from ascend import hypergamy_meme
+
+print(hypergamy_meme.make_hypergamy_meme_ascii())
+```
+
 ## Command-line usage
 
 Ascend can also translate text directly from the terminal using `python -m ascend`.
@@ -371,9 +382,7 @@ If no valid, non-empty text is provided, the command displays an error.
 
 ## Example program
 
-The example program demonstrates how to import and use all six Ascend functions together.
-
-> **TODO:** Add a link to the team's actual example program after Brian and Mihir finish and verify it. The program must demonstrate all six functions using their final interfaces.
+The [example program](https://github.com/software-students-fall2026/python-package-exercise-runitback/blob/main/example.py) demonstrates all seven Ascend functions.
 
 ## Development setup
 
