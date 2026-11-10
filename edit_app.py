@@ -78,10 +78,20 @@ def main():
     print("CAPTION:", blueprint["caption"])
     print("\n" + blueprint["stat_card"])
 
-    with open("edit_blueprint.json", "w", encoding="utf-8") as file:
-        json.dump(blueprint, file, indent=4, ensure_ascii=False)
+    # Create a new filename instead of overwriting an existing blueprint.
+    filename = "edit_blueprint.json"
+    number = 1
 
-    print("\nBlueprint saved to edit_blueprint.json")
+    while True:
+        try:
+            with open(filename, "x", encoding="utf-8") as file:
+                json.dump(blueprint, file, indent=4, ensure_ascii=False)
+            break
+        except FileExistsError:
+            filename = f"edit_blueprint_{number}.json"
+            number += 1
+
+    print(f"\nBlueprint saved to {filename}")
     print("Ready for video generation!")
 
 
